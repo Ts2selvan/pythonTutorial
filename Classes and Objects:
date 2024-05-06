@@ -1,0 +1,125 @@
+Classes and Objects:
+1. Class Definition:
+A class is like a blueprint for creating objects. It defines properties (attributes) and behaviors (methods) that all objects of that class will have.
+
+python
+Copy code
+class Car:
+    def __init__(self, make, model, year):
+        self.make = make
+        self.model = model
+        self.year = year
+
+    def start(self):
+        print(f"{self.make} {self.model} started.")
+
+    def stop(self):
+        print(f"{self.make} {self.model} stopped.")
+__init__() method: This is a special method called the constructor. It initializes the object's attributes when the object is created.
+self: It represents the instance of the class and is used to access attributes and methods of the class within the class itself.
+2. Object Creation:
+python
+Copy code
+# Creating objects
+car1 = Car("Toyota", "Camry", 2020)
+car2 = Car("Tesla", "Model S", 2022)
+
+# Accessing attributes
+print(car1.make)   # Toyota
+print(car2.model)  # Model S
+
+# Calling methods
+car1.start()  # Toyota Camry started.
+car2.stop()   # Tesla Model S stopped.
+3. Class Variables and Instance Variables:
+Class variables are shared among all instances of a class.
+Instance variables are unique to each instance.
+python
+Copy code
+class Dog:
+    species = "Canine"  # Class variable
+
+    def __init__(self, name, age):
+        self.name = name  # Instance variable
+        self.age = age
+
+    def description(self):
+        return f"{self.name} is {self.age} years old."
+
+    def speak(self, sound):
+        return f"{self.name} says {sound}."
+
+# Creating objects
+dog1 = Dog("Buddy", 3)
+dog2 = Dog("Max", 5)
+
+# Accessing class variable
+print(dog1.species)  # Canine
+
+# Accessing instance variables
+print(dog2.description())  # Max is 5 years old.
+
+# Calling method
+print(dog1.speak("Woof"))  # Buddy says Woof.
+4. Inheritance:
+Inheritance allows a new class (subclass) to inherit attributes and methods from an existing class (superclass).
+
+python
+Copy code
+class Animal:
+    def __init__(self, species):
+        self.species = species
+
+    def speak(self):
+        raise NotImplementedError("Subclass must implement abstract method")
+
+class Dog(Animal):
+    def speak(self):
+        return "Woof!"
+
+class Cat(Animal):
+    def speak(self):
+        return "Meow!"
+
+# Creating objects
+dog = Dog("Canine")
+cat = Cat("Feline")
+
+# Calling method
+print(dog.speak())  # Woof!
+print(cat.speak())  # Meow!
+In this example, both Dog and Cat classes inherit from the Animal class and override the speak() method.
+
+5. Encapsulation:
+Encapsulation hides the internal state of objects and restricts access to them.
+
+python
+Copy code
+class BankAccount:
+    def __init__(self, balance=0):
+        self.__balance = balance
+
+    def deposit(self, amount):
+        self.__balance += amount
+
+    def withdraw(self, amount):
+        if self.__balance >= amount:
+            self.__balance -= amount
+        else:
+            print("Insufficient funds")
+
+    def get_balance(self):
+        return self.__balance
+
+# Creating object
+account = BankAccount(1000)
+
+# Accessing private attribute indirectly
+account.deposit(500)
+print(account.get_balance())  # 1500
+
+# Trying to access private attribute directly (will throw an error)
+# print(account.__balance)
+In this example, __balance is a private attribute, and it cannot be accessed directly from outside the class.
+
+These examples should give you a solid understanding of classes and objects in Python. Experiment with them, modify them, and try to create your own classes to reinforce your learning. Feel free to ask if you have any questions!
